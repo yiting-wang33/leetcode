@@ -1,0 +1,39 @@
+class Solution {
+    public int myAtoi(String str) {
+         //str is empty
+        if (str == null || str.length() == 0)
+		return 0;
+        
+        int start = 0;
+        while (start<str.length()-1 && str.charAt(start)==' ') start++;
+        
+        //If the first sequence of non-whitespace characters in str is not a valid integral number
+        //If it contains only whitespace characters
+        int sign = 1;
+        if (!Character.isDigit(str.charAt(start)))
+            if (str.charAt(start)=='-') {
+                sign = -1;
+                start++;
+            }
+        else
+            if (str.charAt(start)=='+') {
+                sign = 1;
+                start++;
+            }
+        else return 0;
+                
+        int res = 0;
+        for (int i = start;i<str.length();i++) {
+            if (!Character.isDigit(str.charAt(i))) return res*sign;
+            if (sign==1) {
+                if (res>Integer.MAX_VALUE/10 || (res==Integer.MAX_VALUE/10 && str.charAt(i)>'7')) return Integer.MAX_VALUE;
+            }
+            else 
+                if (res>Integer.MAX_VALUE/10 || (res==Integer.MAX_VALUE/10 && str.charAt(i)>'8')) return Integer.MIN_VALUE;
+            res = res*10+str.charAt(i)-'0';
+        }
+        return res*sign;
+        
+        
+    }
+}
