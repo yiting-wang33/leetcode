@@ -1,0 +1,99 @@
+class Solution {
+    public String intToRoman(int num) {
+        int C;
+        int X;
+        int I;
+        StringBuffer sb = new StringBuffer("");
+        if (num>=1000) {
+            int M = num/1000;
+            num%=1000;
+            while (M>0) {
+                sb.append("M");
+                M--;
+            }
+        }
+        if (num>=900) {
+            sb.append("CM");
+            num-=900;
+        }
+        else
+            if (num>=500) {
+                sb.append("D");
+                num-=500;
+                C = num/100;
+                num%=100;
+                while (C>0) {
+                    sb.append("C");
+                    C--;
+                }
+        }
+        else 
+            if (num>=400) {
+                sb.append("CD");
+                num-=400;
+            }
+        else 
+            if (num>=100) {
+                C =  num/100;
+                num%=100;
+                while (C>0) {
+                    sb.append("C");
+                    C--;
+                }
+            }
+        if (num>=90) {
+            sb.append("XC");
+            num-=90;
+        }
+        else 
+            if (num>=50) {
+                sb.append("L");
+                num-=50;
+                X = num/10;
+                num%=10;
+                while (X>0) {
+                    sb.append("X");
+                    X--;
+                }
+            }
+        else 
+            if (num>=40) {
+                sb.append("XL");
+                num-=40;
+            }
+        else 
+            if (num>=10) {
+                X =  num/10;
+                num%=10;
+                while (X>0) {
+                    sb.append("X");
+                    X--;
+                }
+            }
+        if (num==9) 
+            sb.append("IX");
+        else 
+            if (num>=5) {
+                sb.append("V");
+                num-=5;
+                I = num/1;
+                while (I>0) {
+                    sb.append("I");
+                    I--;
+                }
+            }
+        else 
+            if (num==4) {
+                sb.append("IV");
+            }
+        else 
+            if (num>=1) {
+                I =  num/1;
+                while (I>0) {
+                    sb.append("I");
+                    I--;
+                }
+            }
+        return sb.toString();
+    }
+}
