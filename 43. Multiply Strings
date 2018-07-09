@@ -1,0 +1,26 @@
+class Solution {
+    public String multiply(String num1, String num2) {
+        int pro[] = new int[221];
+        for (int i = 0;i<221;i++) pro[i] = 0;
+        for (int i =num1.length()-1;i>=0;i--) {
+                int last = num1.length()-1-i;
+            for (int j=num2.length()-1;j>=0;j--) {
+                int product = (num1.charAt(i)-'0')*(num2.charAt(j)-'0');
+                System.out.println(product);
+                pro[last] += product; 
+                int cf = last;
+                while (pro[cf]>9) {
+                    pro[cf+1] = pro[cf+1]+pro[cf]/10;
+                    pro[cf] = pro[cf] % 10;
+                    cf++;
+                }
+                last++;
+            }
+        }
+        int i =220;
+        while (i>0 && pro[i]==0) i--;
+        StringBuffer sb = new StringBuffer("");
+        for (int j = i;j>=0;j--) sb.append(pro[j]);
+        return sb.toString();
+    }
+}
