@@ -1,0 +1,16 @@
+class Solution {
+    public double myPow(double x, int n) {
+        
+        double pow = n<0?1/halfPow(x,n*(-1)):halfPow(x,n);
+        return pow;
+  
+    }
+    
+    public double halfPow(double x,int n) {
+        
+        if (n==0) return 1;
+        double half = halfPow(x,n/2);
+        if (n%2==0) return half*half;
+        else return half*half*x;
+    }
+}
