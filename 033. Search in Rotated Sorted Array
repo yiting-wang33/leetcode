@@ -1,0 +1,40 @@
+class Solution {
+    public int search(int[] nums, int target) {
+        
+        if (nums.length==0) return -1;
+        int p = 0;
+        int q = nums.length-1;
+        //if (nums[p]==target) return p;
+        //if (nums[q]==target) return q;
+        
+        while (p+1<q) {
+            
+            int mid = p+(q-p)/2;
+            int check = (nums[nums.length-1]-nums[mid])*(nums[nums.length-1]-target);
+            //System.out.println((nums[nums.length-1]-mid)+" "+(nums[nums.length-1]-target));
+            if (check>0) {
+                if (nums[mid]>target) {
+                    q = mid;
+                }
+                else if (nums[mid]<target) {
+                    p = mid;
+                }
+                else return mid;
+            }
+            else {
+                if (nums[mid]>target) {
+                    p = mid;
+                }
+                else if (nums[mid]<target) {
+                    q = mid;
+                }
+                else return mid;
+            }
+            
+            System.out.println(p+" "+mid+" "+q+" "+check);
+        }
+        if (nums[p]==target) return p;
+        if (nums[q]==target) return q;
+        return -1;
+    }
+}
