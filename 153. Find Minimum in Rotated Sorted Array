@@ -1,0 +1,17 @@
+class Solution {
+    public int findMin(int[] nums) {
+        int p = 0;
+        int q = nums.length-1;
+        while (p+1<q) {
+            int mid = p+(q-p)/2;
+            if (nums[mid]>nums[nums.length-1]) {
+                p=mid;
+            }
+            else {
+                q=mid; 
+            }
+        }
+        if (nums[p]<nums[q]) return p; 
+        else return nums[q];                                   
+    }
+}
