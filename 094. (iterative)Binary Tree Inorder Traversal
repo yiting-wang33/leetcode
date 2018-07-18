@@ -1,0 +1,42 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<Integer> inorderTraversal(TreeNode root) {
+        Stack<TreeNode> stack = new Stack<TreeNode>();
+        List<Integer> in = new ArrayList<Integer>();
+        
+        //找到最左边的一个节点，即第一个要输出的节点
+        while (root != null) {
+            stack.push(root);
+            root = root.left;
+        }
+        
+        while (!stack.empty()) {
+            TreeNode node = stack.peek();
+            in.add(node.val);
+            //如果右子树为空
+            if (node.right == null) {
+                node = stack.pop();
+                //如果当前节点为父节点的右子树,
+                while (!stack.isEmpty() && stack.peek().right == node) {
+                    node = stack.pop();
+                }
+            }else {
+                //如果当前节点的右子树不为空
+                node = node.right;
+                while (node != null) {
+                    stack.push(node);
+                    node = node.left;
+                }
+            }
+        }
+        return in;
+    }
+}
