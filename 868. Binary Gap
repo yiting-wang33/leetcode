@@ -1,0 +1,24 @@
+class Solution {
+    public int binaryGap(int N) {
+        if (N == 0 || N ==1) return 0;
+        String bin = Integer.toBinaryString(N);
+        int fir = 0;
+        int Max = 0;
+        int count = 0;
+        while (fir<bin.length() && bin.charAt(fir)!='1') {
+            fir++;
+        }
+
+        for (int i = fir+1;i<bin.length();i++) {
+            if (bin.charAt(i) != '1') {
+                count++;
+            }
+            else {
+                count++;
+                Max = Math.max(count,Max);
+                count = 0;
+            }
+        }
+        return Max;
+    }
+}
